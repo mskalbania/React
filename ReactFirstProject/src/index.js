@@ -1,11 +1,10 @@
 import * as React from "react";
+import ReactDOM from "react-dom";
 
-class Layout extends React.Component {
-    render() {
-        return (
-            <h1>Test</h1>
-        );
-    }
-}
+import Layout from "./component/Layout";
 
-React.DOM.render(<Layout/>, "main");
+ReactDOM.render(<Layout/>, document.getElementById("main"));
+
+
+
+// API KEY: AIzaSyBvQs_qkzoP01dWWB-OimBzTK0TaM1LS90

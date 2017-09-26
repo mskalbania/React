@@ -1,0 +1,26 @@
+#dev-btns {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#con-log-btn {
+    margin-right: 3px;
+}
+
+#con-clear-btn {
+    margin-left: 3px;
+}
+
+#search-bar {
+    margin-top: 10px;
+}
+
+td, th {
+    vertical-align: middle !important;
+    text-align: center !important;
+}
+
+td:first-of-type, td:first-of-type > div {
+    height: 150px;
+    width: 160px;
+}

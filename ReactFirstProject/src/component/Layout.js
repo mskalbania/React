@@ -16,7 +16,7 @@ export default class Layout extends Component {
             videos: [],
             selectedVideo: null
         };
-        this.videoSearch("Guild Wars 2")
+        this.videoSearch("React JS")
     }
 
     videoSearch(text) {
@@ -30,6 +30,10 @@ export default class Layout extends Component {
                 }
             );
         }
+    }
+
+    xd(text){
+        alert(text)
     }
 
     render() {

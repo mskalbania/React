@@ -9,7 +9,10 @@ export default class SearchBar extends Component {
     render() {
         return (
             <div className="search-bar">
-                <input onKeyUp={(e)=>this.props.onSearchBoxChange(e.target.value)} className="form-control" />
+                <input className="form-control"
+                       onKeyUp={(e) => this.props.onSearchBoxChange(e.target.value)}
+                       onClick={(e) => e.target.value = ""}
+                />
             </div>
         );
     }

@@ -32,10 +32,6 @@ export default class Layout extends Component {
         }
     }
 
-    xd(text){
-        alert(text)
-    }
-
     render() {
 
         const videoSearch = _.debounce((text) => {

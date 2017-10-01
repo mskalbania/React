@@ -5,9 +5,24 @@ import {Link} from 'react-router';
 
 class PostCreate extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {success: false};
+    }
+
     static contextTypes = {
         router: PropTypes.object
     };
+
+    onSubmit(props) {
+        this.props.createPost(props)
+            .then(() => {
+                this.setState({success: true});
+                setTimeout(() => {
+                    this.context.router.push("/");
+                }, 1500);
+            });
+    }
 
     render() {
         //config objects (form control is handling by redux-form)
@@ -18,34 +33,41 @@ class PostCreate extends Component {
 
         return (
             // ... dots in from fields is equivalent to ex. onChange = {this.title.onChange}
-            <form onSubmit={handleSubmit(this.props.createPost)}>
-                <h3>Create New Post</h3>
-                <div className="form-group">
-                    <label>Title</label>
-                    <input type="text" className="form-control" {...title}/>
-                    <div className="text-help">
-                        {title.touched ? title.error : ''}
+            <div>
+                <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                    <h3>Create New Post</h3>
+                    <div className="form-group">
+                        <label>Title</label>
+                        <input type="text" className="form-control" {...title}/>
+                        <div className="text-help">
+                            {title.touched ? title.error : ''}
+                        </div>
                     </div>
-                </div>
-                <div className="form-group">
-                    <label>Category</label>
-                    <input type="text" className="form-control" {...categories}/>
-                    <div className="text-help">
-                        {categories.touched ? categories.error : ''}
+                    <div className="form-group">
+                        <label>Category</label>
+                        <input type="text" className="form-control" {...categories}/>
+                        <div className="text-help">
+                            {categories.touched ? categories.error : ''}
+                        </div>
                     </div>
-                </div>
-                <div className="form-group">
-                    <label>Content</label>
-                    <textarea className="form-control" {...content}/>
-                    <div className="text-help">
-                        {content.touched ? content.error : ''}
+                    <div className="form-group">
+                        <label>Content</label>
+                        <textarea className="form-control" {...content}/>
+                        <div className="text-help">
+                            {content.touched ? content.error : ''}
+                        </div>
                     </div>
+                    <button type="submit" className="btn btn-primary"
+                            disabled={this.props.invalid}>Submit
+                    </button>
+                    <Link to="/" className="btn btn-danger">Cancel</Link>
+                </form>
+                {this.state.success &&
+                <div className="alert alert-success" role="alert">
+                    Entry successfully created. Redirecting...
                 </div>
-                <button type="submit" className="btn btn-primary"
-                        disabled={this.props.invalid}>Submit
-                </button>
-                <Link to="/" className="btn btn-danger">Cancel</Link>
-            </form>
+                }
+            </div>
         );
     }
 }

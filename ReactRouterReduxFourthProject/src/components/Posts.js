@@ -10,14 +10,37 @@ class Posts extends Component {
         this.props.fetchPosts();
     }
 
+    renderPosts() {
+        return (this.props.posts.map((post) => {
+            return (
+                <li key={post.id} className="list-group-item">
+                    <Link to={"posts/" + post.id}>
+                        <span className="float-right">{post.categories}</span>
+                        <strong>{post.title}</strong>
+                    </Link>
+                </li>);
+        }));
+    }
+
     render() {
         return (
             <div>
-                <Link className="btn btn-primary" to="/new">New Post</Link>
-                <div>Posts</div>
+                <div className="text-xl-right">
+                    <Link className="btn btn-primary" to="posts/new">New Post</Link>
+                </div>
+                <div>
+                    <h3>Posts</h3>
+                    <ul className="list-group">
+                        {this.renderPosts()}
+                    </ul>
+                </div>
             </div>
         );
     }
 }
 
-export default connect(null, {fetchPosts: fetchPosts})(Posts);
+function mapStateToProps(state) {
+    return {posts: state.posts.all}
+}
+
+export default connect(mapStateToProps, {fetchPosts: fetchPosts})(Posts);

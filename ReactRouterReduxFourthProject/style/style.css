@@ -5,3 +5,7 @@ form{
 form a{
     margin-left: 5px;
 }
+
+div .alert {
+    margin-top: 15px;
+}
